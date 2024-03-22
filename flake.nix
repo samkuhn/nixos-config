@@ -16,7 +16,7 @@
 
   outputs = { self, nixpkgs, home-manager, flake-utils, lanzaboote, nix-index-database, ... } @ inputs:
     let
-      username = "bob.vanderlinden";
+      username = "sam";
       mkPkgs =
         { system ? "x86_64-linux"
         , nixpkgs ? inputs.nixpkgs
@@ -42,7 +42,7 @@
         };
 
       # System configuration for laptop.
-      nixosConfigurations.nac44250 = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.rogstrixg1660ti = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
@@ -50,7 +50,7 @@
         modules = builtins.attrValues self.nixosModules;
       };
 
-      homeConfigurations."${username}@nac44250" = self.nixosConfigurations.nac44250.config.home-manager.users.${username}.home;
+      homeConfigurations."${username}@rogstrixg1660ti" = self.nixosConfigurations.rogstrixg1660ti.config.home-manager.users.${username}.home;
 
       templates = import ./templates;
     }
