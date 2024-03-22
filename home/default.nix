@@ -273,8 +273,8 @@ in
       };
     };
 
-    services.gpg-agent.enable = true;
-    services.gpg-agent.pinentryFlavor = "gnome3";
+    #services.gpg-agent.enable = true;
+    #services.gpg-agent.pinentryFlavor = "gnome3";
 
     services.network-manager-applet.enable = true;
     services.blueberry.enable = true;

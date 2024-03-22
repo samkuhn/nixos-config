@@ -34,30 +34,30 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  boot.initrd.luks.devices.luksroot = {
-    device = "/dev/disk/by-uuid/df00d5d2-13d3-4d99-864e-f89169c4b241";
-    allowDiscards = true;
-    preLVM = true;
+  #boot.initrd.luks.devices.luksroot = {
+  #  device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
+  #  allowDiscards = true;
+  #  preLVM = true;
+  #};
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
+    fsType = "ext4";
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/115f53cf-99fc-40eb-8dfc-e448593d09cf";
-      fsType = "ext4";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/80c5465e-1983-4e22-90e3-d219fb23f6fb";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/199D-2646";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/7891-8FAA";
+    fsType = "vfat";
+  };
 
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/4d13ef58-33bb-4e0f-95ea-dcfec3371911";
+      device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
     }
   ];
 
