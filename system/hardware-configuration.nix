@@ -41,25 +41,26 @@
   #};
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
+    device = "/dev/disk/by-uuid/799e272a-97a3-4550-8395-70d600a85b11";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/7891-8FAA";
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
-    }
-  ];
+  #fileSystems."/boot/efi" = {
+  #  device = "/dev/disk/by-uuid/7891-8FAA";
+  #  fsType = "vfat";
+  #};
+
+  swapDevices = lib.mkForce [ ];
+  #swapDevices = [
+  #  {
+  #    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
+  #  }
+  #];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
