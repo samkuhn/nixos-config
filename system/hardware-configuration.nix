@@ -29,10 +29,11 @@
   # Secure boot
   boot.loader.systemd-boot.enable = false;
   boot.lanzaboote.enable = true;
-  boot.lanzaboote.pkiBundle = "/etc/secureboot";
+  boot.lanzaboote.pkiBundle = "/mnt/etc/secureboot";
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/mnt/boot/EFI";
 
   #boot.initrd.luks.devices.luksroot = {
   #  device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
