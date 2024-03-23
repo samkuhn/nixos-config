@@ -24,16 +24,16 @@
 
   # Disable systemd-boot, as it is replaced by lanzaboote.
   # boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.netbootxyz.enable = true;
+  #boot.loader.systemd-boot.netbootxyz.enable = true;
   
   # Secure boot
-  boot.loader.systemd-boot.enable = false;
-  boot.lanzaboote.enable = true;
-  boot.lanzaboote.pkiBundle = "/mnt/etc/secureboot";
+  #boot.loader.systemd-boot.enable = false;
+  #boot.lanzaboote.enable = false; 
+  #boot.lanzaboote.pkiBundle = "/mnt/etc/secureboot";
 
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
   #boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader.efi.efiSysMountPoint = "/mnt/boot/EFI";
+  #boot.loader.efi.efiSysMountPoint = "/mnt/boot/EFI";
 
   #boot.initrd.luks.devices.luksroot = {
   #  device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
@@ -41,8 +41,14 @@
   #  preLVM = true;
   #};
 
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.grub.useOSProber = true;
+  #boot.supportedFilesystems = [ "xfs" "ext4" "nfs4" "fuse" ];
+  #boot.tmpOnTmpfs = true;
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b6b6a926-8bd9-4828-b14e-ef8a2326520e";
+    device = "/dev/disk/by-uuid/af6f3615-6594-45f5-9bea-3efb5bd17c6c";
     fsType = "ext4";
   };
 
@@ -56,7 +62,7 @@
   #  fsType = "vfat";
   #};
 
-  swapDevices = lib.mkForce [ ];
+  swapDevices = [ ];
   #swapDevices = [
   #  {
   #    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
