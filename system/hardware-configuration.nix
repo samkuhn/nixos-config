@@ -69,5 +69,7 @@
   #  }
   #];
 
+  boot.loader.grub.devices = [ "/dev/disk/by-uuid/7891-8FAA" ];
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
