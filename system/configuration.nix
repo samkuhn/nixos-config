@@ -216,7 +216,7 @@
     timeAction = 5 * 60;
     criticalPowerAction = "Hibernate";
   };
-  services.tlp.enable = true;
+  #services.tlp.enable = true;
   services.earlyoom.enable = true;
 
   # Set permissions for RTL2832 USB dongle to use with urh.
