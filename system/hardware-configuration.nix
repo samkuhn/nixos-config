@@ -41,11 +41,16 @@
   #  preLVM = true;
   #};
 
+  # random internet
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
   #boot.loader.grub.useOSProber = true;
   #boot.supportedFilesystems = [ "xfs" "ext4" "nfs4" "fuse" ];
   #boot.tmpOnTmpfs = true;
+
+  # gpt
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/af6f3615-6594-45f5-9bea-3efb5bd17c6c";
@@ -69,7 +74,7 @@
   #  }
   #];
 
-  boot.loader.grub.devices = [ "/dev/disk/by-uuid/7891-8FAA" ];
+  #boot.loader.grub.devices = [ "/dev/disk/by-uuid/7891-8FAA" ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
