@@ -13,6 +13,8 @@
   #suites.sway.enable = true;
 
   boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.emergencyAccess = true;
+
   #boot.plymouth.enable = true;
   #boot.consoleLogLevel = 3;
   #boot.kernelParams = [ "quiet" "udev.log_priority=3" ];
