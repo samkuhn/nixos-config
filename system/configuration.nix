@@ -49,18 +49,15 @@
     ];
   };
 
-  #systemd.log_level=debug; 
-  #systemd.log_target=console;
-
-  #programs.nix-ld.enable = true;
+  programs.nix-ld.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  #programs.mtr.enable = true;
-  #programs.gnupg.agent = {
-  #  enable = true;
-  #  enableSSHSupport = true;
-  #};
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # Smartcard daemon for Yubikey
   #services.pcscd.enable = true;
@@ -85,16 +82,16 @@
   #  }
   #];
 
-  #hardware.bluetooth = {
-  #  enable = true;
-    # hsphfpd.enable = true;
-    #settings = {
-    #  General = {
-    #    # To enable BlueZ Battery Provider
-    #    Experimental = true;
-    #  };
-    #};
-  #};
+  hardware.bluetooth = {
+    enable = true;
+    hsphfpd.enable = true;
+    settings = {
+      General = {
+        # To enable BlueZ Battery Provider
+        Experimental = true;
+      };
+    };
+  };
 
   #hardware.logitech.wireless = {
   #  enable = true;
@@ -104,58 +101,60 @@
   # Workaround: https://github.com/NixOS/nixpkgs/issues/114222
   #systemd.user.services.telephony_client.enable = false;
 
-  #hardware.opengl = {
-  #  enable = true;
-  #  driSupport = true;
-  #  driSupport32Bit = true;
-  #};
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
-  #security.rtkit.enable = true;
-  #services.pipewire = {
-  #  enable = true;
-  #  pulse.enable = true;
-  #  alsa.enable = true;
-  #  alsa.support32Bit = true;
-  #};
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+  };
 
   networking = {
     hostName = "rogstrixg1660ti";
 
-    #firewall = {
-    #  enable = true;
-    #  allowedTCPPorts = [
-    #    3000 # Development
-    #    8080 # Development
-    #  ];
-    #  allowPing = true;
-    #};
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        3000 # Development
+        8080 # Development
+      ];
+      allowPing = true;
+    };
 
-    #networkmanager = {
-    #  enable = true;
-    #  plugins = with pkgs; [ networkmanager-openvpn ];
-    #};
+    networkmanager = {
+      enable = true;
+      plugins = with pkgs; [ networkmanager-openvpn ];
+    };
   };
 
-  #fonts = {
-  #  fontDir.enable = true;
-  #  fontconfig = {
-  #    enable = true;
-  #    defaultFonts = {
-  #      monospace = [
-  #        "SauceCodePro Nerd Font"
-  #      ];
-  #    };
-  #  };
-  #  packages = with pkgs; [
-  #    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
-  #    corefonts # Microsoft free fonts
-  #    noto-fonts
-  #    noto-fonts-emoji
-  #  ];
-  #};
+  fonts = {
+    fontDir.enable = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [
+          "SauceCodePro Nerd Font"
+        ];
+      };
+    };
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+      corefonts # Microsoft free fonts
+      noto-fonts
+      noto-fonts-emoji
+    ];
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  #services.xserver.displayManager.autoLogin.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
@@ -195,42 +194,41 @@
 
   environment.systemPackages = with pkgs; [
     bash
-    #moreutils # sponge...
-    #unzip
-    #vim
-    #wget
-    #htop
+    moreutils # sponge...
+    unzip
+    vim
+    wget
+    htop
     efibootmgr
 
     # Networking tools
-    #inetutils # hostname ping ifconfig...
-    #dnsutils # dig nslookup...
-    #bridge-utils # brctl
-    #iw
-    #wirelesstools # iwconfig
+    inetutils # hostname ping ifconfig...
+    dnsutils # dig nslookup...
+    bridge-utils # brctl
+    iw
+    wirelesstools # iwconfig
 
-    #docker
+    docker
 
-    #usbutils # lsusb
+    usbutils # lsusb
 
     #polkit_gnome
 
-    #sbctl
+    sbctl
   ];
 
   # Use experimental nsncd. See https://flokli.de/posts/2022-11-18-nsncd/
   #services.nscd.enableNsncd = true;
 
-  #services.acpid.enable = true;
-  #security.polkit.enable = true;
-  #services.upower = {
-  #  enable = true;
-  #  timeAction = 5 * 60;
-  #  criticalPowerAction = "Hibernate";
-  #};
-  #services.tlp.enable = true;
-  #services.earlyoom.enable = true;
-
+  services.acpid.enable = true;
+  security.polkit.enable = true;
+  services.upower = {
+    enable = true;
+    timeAction = 5 * 60;
+    criticalPowerAction = "Hibernate";
+  };
+  services.tlp.enable = true;
+  services.earlyoom.enable = true;
 
   # Set permissions for RTL2832 USB dongle to use with urh.
   #hardware.rtl-sdr.enable = true;
@@ -259,17 +257,16 @@
     #SUBSYSTEM=="usb", ATTRS{idVendor}=="2833", TAG+="uaccess"
   #'';
 
-  #services.locate = {
-  #  enable = true;
-  #  pruneNames = [ ];
-  #};
-  #services.openssh.enable = false;
+  services.locate = {
+    enable = true;
+    pruneNames = [ ];
+  };
+  services.openssh.enable = false;
 
-  # No need for printing atm.
-  # services.printing = {
-  #   enable = true;
-  #   drivers = with pkgs; [ gutenprint splix cups-bjnp ];
-  # };
+   services.printing = {
+     enable = true;
+     drivers = with pkgs; [ gutenprint splix cups-bjnp ];
+   };
 
   #services.avahi = {
   #  enable = true;
@@ -281,8 +278,8 @@
   #  publish.enable = false;
   #};
 
-  #services.redshift.enable = true;
-  #location.provider = "geoclue2";
+  services.redshift.enable = true;
+  location.provider = "geoclue2";
 
   #services.greetd = {
   #  enable = true;
@@ -296,9 +293,6 @@
   #    };
   #  };
   #};
-
-  #services.xserver.enable = false;
-  #services.xserver.displayManager.autoLogin.enable = true;
 
   # Fingerprint reader
   #services.fprintd.enable = true;
