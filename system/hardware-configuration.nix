@@ -55,7 +55,7 @@
  
   fileSystems."/" = {
     #device = "/dev/disk/by-uuid/530bad43-6faf-4f88-9e51-0858c634c8c5";
-    device = "/dev/sda3" # shouldnt do this but above doesnt boot
+    device = "/dev/sda3"; # shouldnt do this but above doesnt boot
     fsType = "ext4";
   };
 
