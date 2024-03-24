@@ -84,7 +84,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    hsphfpd.enable = true;
+    #hsphfpd.enable = true;
     settings = {
       General = {
         # To enable BlueZ Battery Provider
