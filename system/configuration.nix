@@ -271,9 +271,9 @@
   #documentation.enable = false;
   #documentation.nixos.enable = false;
 
-  #home-manager.sharedModules = [{
-  #  programs.git.signing.key = "2BA975040411E0DE97B44224D0C37FC5C11D1D60";
-  #}];
+  home-manager.sharedModules = [{
+    programs.git.signing.key = "2BA975040411E0DE97B44224D0C37FC5C11D1D60";
+  }];
 
   nix = {
     registry.nixpkgs.flake = inputs.nixpkgs;
