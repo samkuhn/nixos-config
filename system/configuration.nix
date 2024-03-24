@@ -18,11 +18,16 @@
   #boot.kernelParams = [ "quiet" "udev.log_priority=3" ];
   #boot.loader.timeout = 0;
 
-  boot.shell_on_fail = true;
-  boot.debug1 = true;
-  boot.debug1devices = true;
-  boot.debug1mounts = true;
-  boot.trace = true;
+  boot = {
+    kernelParams = [
+      "verbose=1"
+      "boot.trace=1"
+      "boot.shell_on_fail=1"
+      "boot.debug1=1"          # stop right away
+      "boot.debug1device=1"    # stop after loading modules and creating device nodes
+      "boot.debug1mounts=1"    # stop after mounting file systems
+    ];
+  };
 
   #systemd.log_level=debug; 
   #systemd.log_target=console;
