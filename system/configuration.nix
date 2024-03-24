@@ -7,13 +7,31 @@
   # Allow opening a shell during boot.
   # systemd.additionalUpstreamSystemUnits = ["debug-shell.service"];
 
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/London";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_GB.UTF-8";
+    LC_IDENTIFICATION = "en_GB.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+    LC_MONETARY = "en_GB.UTF-8";
+    LC_NAME = "en_GB.UTF-8";
+    LC_NUMERIC = "en_GB.UTF-8";
+    LC_PAPER = "en_GB.UTF-8";
+    LC_TELEPHONE = "en_GB.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
+  };
 
   suites.single-user.enable = true;
   #suites.sway.enable = true;
 
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.emergencyAccess = true;
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   #boot.plymouth.enable = true;
   #boot.consoleLogLevel = 3;
@@ -45,30 +63,30 @@
   #};
 
   # Smartcard daemon for Yubikey
-  services.pcscd.enable = true;
+  #services.pcscd.enable = true;
 
   security.sudo.enable = true;
 
   # On my desktop I don't want to run into file limitations.
   # Using vite with a large project made Chromium reach the
   # limit, resulting in weird behaviour without proper errors. Never again.
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      type = "soft";
-      item = "nofile";
-      value = "-1";
-    }
-    {
-      domain = "*";
-      type = "hard";
-      item = "nofile";
-      value = "-1";
-    }
-  ];
+  #security.pam.loginLimits = [
+  #  {
+  #    domain = "*";
+  #    type = "soft";
+  #    item = "nofile";
+  #    value = "-1";
+  #  }
+  #  {
+  #    domain = "*";
+  #    type = "hard";
+  #    item = "nofile";
+  #    value = "-1";
+  #  }
+  #];
 
-  hardware.bluetooth = {
-    enable = true;
+  #hardware.bluetooth = {
+  #  enable = true;
     # hsphfpd.enable = true;
     #settings = {
     #  General = {
@@ -76,7 +94,7 @@
     #    Experimental = true;
     #  };
     #};
-  };
+  #};
 
   #hardware.logitech.wireless = {
   #  enable = true;
@@ -84,7 +102,7 @@
   #};
 
   # Workaround: https://github.com/NixOS/nixpkgs/issues/114222
-  systemd.user.services.telephony_client.enable = false;
+  #systemd.user.services.telephony_client.enable = false;
 
   #hardware.opengl = {
   #  enable = true;
@@ -100,8 +118,8 @@
   #  alsa.support32Bit = true;
   #};
 
-  #networking = {
-    #hostName = "nac44250";
+  networking = {
+    hostName = "roxstrixg1660ti";
 
     #firewall = {
     #  enable = true;
@@ -116,7 +134,7 @@
     #  enable = true;
     #  plugins = with pkgs; [ networkmanager-openvpn ];
     #};
-  #};
+  };
 
   #fonts = {
   #  fontDir.enable = true;
@@ -327,5 +345,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.03"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

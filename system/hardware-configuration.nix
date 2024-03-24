@@ -52,11 +52,7 @@
   #boot.loader.grub.useOSProber = true;
   #boot.supportedFilesystems = [ "xfs" "ext4" "nfs4" "fuse" ];
   #boot.tmpOnTmpfs = true;
-
-  # gpt
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+ 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/530bad43-6faf-4f88-9e51-0858c634c8c5";
     fsType = "ext4";
