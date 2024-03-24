@@ -24,8 +24,8 @@
   boot.debug1mounts = true;
   boot.trace = true;
 
-  systemd.log_level=debug; 
-  systemd.log_target=console;
+  #systemd.log_level=debug; 
+  #systemd.log_target=console;
 
   #programs.nix-ld.enable = true;
 
