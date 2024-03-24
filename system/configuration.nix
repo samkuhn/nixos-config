@@ -13,10 +13,19 @@
   #suites.sway.enable = true;
 
   boot.initrd.systemd.enable = true;
-  boot.plymouth.enable = true;
-  boot.consoleLogLevel = 3;
+  #boot.plymouth.enable = true;
+  #boot.consoleLogLevel = 3;
   #boot.kernelParams = [ "quiet" "udev.log_priority=3" ];
-  boot.loader.timeout = 0;
+  #boot.loader.timeout = 0;
+
+  boot.shell_on_fail = true;
+  boot.debug1 = true;
+  boot.debug1devices = true;
+  boot.debug1mounts = true;
+  boot.trace = true;
+
+  systemd.log_level=debug; 
+  systemd.log_target=console;
 
   #programs.nix-ld.enable = true;
 

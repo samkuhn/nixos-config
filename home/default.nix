@@ -26,154 +26,155 @@ in
   ];
   config = {
     home.packages = with pkgs; [
-      coin
-      nixfmt
-      bitwarden
-      insomnia
-      spotify
-      pavucontrol
-      fortune
-      cowsay
-      gdb
-      mplayer
-      imagemagick
-      nodejs
-      entr
-      socat
-      file
-      proot
-      qemu
-      awscli
-      darkhttpd
-      xclip
-      jq
-      nmap
-      graphviz
-      xfce.thunar
-      xfce.xfconf
-      xfce.tumbler
-      xfce.exo
-      volumeicon
-      keepassxc
-      jdk
-      libreoffice
-      speedcrunch
-      ffmpegthumbnailer
-      networkmanagerapplet
-      xsel
-      lxappearance
+      #coin
+      #nixfmt
+      #bitwarden
+      #insomnia
+      #spotify
+      #pavucontrol
+      #fortune
+      #cowsay
+      #gdb
+      #mplayer
+      #imagemagick
+      #nodejs
+      #entr
+      #socat
+      #file
+      #proot
+      #qemu
+      #awscli
+      #darkhttpd
+      #xclip
+      #jq
+      #nmap
+      #graphviz
+      #xfce.thunar
+      #xfce.xfconf
+      #xfce.tumbler
+      #xfce.exo
+      #volumeicon
+      #keepassxc
+      #jdk
+      #libreoffice
+      #speedcrunch
+      #ffmpegthumbnailer
+      #networkmanagerapplet
+      #xsel
+      #lxappearance
 
-      gitAndTools.hub
-      gitAndTools.gh
-      git-cola
-      git-branchless
-      git-absorb
-      git-revise
+      #gitAndTools.hub
+      #gitAndTools.gh
+      #git-cola
+      #git-branchless
+      #git-absorb
+      #git-revise
 
-      gnome.file-roller
-      clang
-      slack
-      zoom-us
-      watchman
-      i3status
-      mono
-      inconsolata
-      liberation_ttf
-      ttf_bitstream_vera
-      gnupg
-      vlc
-      patchelf
-      docker-compose
-      httpie
-      gimp
-      feh
-      screen
-      nixpkgs-review
-      leafpad
-      mypaint
-      tiled
-      maven
-      yq-go
-      ripgrep
-      gnome.pomodoro
-      audacity
-      ffmpeg-full
-      zoxide
-      fd
-      procs
-      sd
-      bottom
-      # neo4j-desktop
-      watchexec
-      bitwarden-cli
-      xsv
-      q-text-as-data
-      httpie
-      delta
-      # luakit
-      nodePackages.zx
-      deno
-      # jujutsu
-      procs
-      element-desktop
-      thunderbird
-      inkscape
-      git-worktree-shell
-      # monado
-      meld
-      lsof
-      home-manager
-      difftastic
-      du-dust
-      fx
-      peek
-      cachix
-      tig
-      dua
-      chatgpt-cli
-      helix
-      nix-output-monitor
-      xdg-utils
+      #gnome.file-roller
+      #clang
+      #slack
+      #zoom-us
+      #watchman
+      #i3status
+      #mono
+      #inconsolata
+      #liberation_ttf
+      #ttf_bitstream_vera
+      #gnupg
+      #vlc
+      #patchelf
+      #docker-compose
+      #httpie
+      #gimp
+      #feh
+      #screen
+      #nixpkgs-review
+      #leafpad
+      #mypaint
+      #tiled
+      #maven
+      #yq-go
+      #ripgrep
+      #gnome.pomodoro
+      #audacity
+      #ffmpeg-full
+      #zoxide
+      #fd
+      #procs
+      #sd
+      #bottom
+      ## neo4j-desktop
+      #watchexec
+      #bitwarden-cli
+      #xsv
+      #q-text-as-data
+      #httpie
+      #delta
+      ## luakit
+      #nodePackages.zx
+      #deno
+      ## jujutsu
+      #procs
+      #element-desktop
+      #thunderbird
+      #inkscape
+      #git-worktree-shell
+      ## monado
+      #meld
+      #lsof
+      #home-manager
+      #difftastic
+      #du-dust
+      #fx
+      #peek
+      #cachix
+      #tig
+      #dua
+      #chatgpt-cli
+      #helix
+      #nix-output-monitor
+      #xdg-utils
       # Prioritize the sway-open-wrappers.
-      (lib.hiPrio chromium-wrapper)
-      (lib.hiPrio vscode-wrapper)
+      #(lib.hiPrio chromium-wrapper)
+      #(lib.hiPrio vscode-wrapper)
     ];
 
-    dconf = {
-      enable = true;
-      settings = {
-        "org/gnome/desktop/sound" = {
-          event-sounds = false;
-          input-feedback-sounds = false;
-        };
-      };
-    };
+    #dconf = {
+    #  enable = true;
+    #  settings = {
+    #    "org/gnome/desktop/sound" = {
+    #      event-sounds = false;
+    #      input-feedback-sounds = false;
+    #    };
+    #  };
+    #};
 
-    programs.chromium.enable = true;
+    #programs.chromium.enable = true;
 
-    programs.terminator = {
-      enable = true;
-      config = {
-        global_config = {
-          inactive_color_offset = "1.0";
-        };
-        keybindings = {
-          go_next = "";
-          new_window = "<Primary><Shift>n";
-        };
-        profiles.default = {
-          background_color = "#002b36";
-          cursor_color = "#aaaaaa";
-          font = "SauceCodePro Nerd Font 11";
-          use_system_font = false;
-          foreground_color = "#839496";
-          show_titlebar = false;
-          scrollback_lines = 10000;
-          palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3";
-        };
-      };
-    };
+    #programs.terminator = {
+    #  enable = true;
+    #  config = {
+    #    global_config = {
+    #      inactive_color_offset = "1.0";
+    #    };
+    #    keybindings = {
+    #      go_next = "";
+    #      new_window = "<Primary><Shift>n";
+    #    };
+    #    profiles.default = {
+    #      background_color = "#002b36";
+    #      cursor_color = "#aaaaaa";
+    #      font = "SauceCodePro Nerd Font 11";
+    #      use_system_font = false;
+    #      foreground_color = "#839496";
+    #      show_titlebar = false;
+    #      scrollback_lines = 10000;
+    #      palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3";
+    #    };
+    #  };
+    #};
 
+/*
     fonts.fontconfig.enable = true;
     gtk = {
       enable = true;
@@ -455,6 +456,7 @@ in
     programs.htop.enable = true;
 
     home.stateVersion = "21.03";
+*/
   };
 }
 
