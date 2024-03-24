@@ -58,7 +58,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/efbb7840-40f8-4fc4-b064-6c468b763db5";
+    device = "/dev/disk/by-uuid/72932103-ccdf-42ce-8dcf-37da6d3ed7ba";
     fsType = "ext4";
   };
 
