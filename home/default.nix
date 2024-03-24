@@ -455,8 +455,8 @@ in
     };
     programs.htop.enable = true;
 
-    home.stateVersion = "21.03";
 */
+    home.stateVersion = "21.03";
   };
 }
 
