@@ -263,10 +263,10 @@
 
   #users.defaultUserShell = pkgs.fish;
 
-  #nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.permittedInsecurePackages = [
-  #  "electron-25.9.0"
-  #];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   #documentation.enable = false;
   #documentation.nixos.enable = false;
