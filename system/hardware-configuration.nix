@@ -8,19 +8,24 @@
   modulesPath,
   ...
 }: {
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "thunderbolt" "rtsx_pci_sdmmc" "dm-snapshot" "kvm-intel" "i915" ];
-  # boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  # boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "thunderbolt" "rtsx_pci_sdmmc" "dm-snapshot" "kvm-intel" "i915" ];
+  # boot.initrd.kernelModules = [ "dm-snapshot" ];
+  # boot.kernelModules = [ "kvm-intel" ];
   # https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start
-  boot.initrd.kernelModules = [ "kvm-intel" "i915" ];
+  # boot.initrd.kernelModules = [ "kvm-intel" "i915" ];
   # Enable framebuffer compression (FBC)
   # can reduce power consumption while reducing memory bandwidth needed for screen refreshes.
   # https://wiki.archlinux.org/index.php/intel_graphics#Framebuffer_compression_(enable_fbc)
-  boot.kernelParams = [ "i915.enable_fbc=1" ];
+  #boot.kernelParams = [ "i915.enable_fbc=1" ];
+  #boot.extraModulePackages = [ ];
 
-  boot.extraModulePackages = [ ];
-  hardware.enableAllFirmware = true;
-  hardware.enableRedistributableFirmware = true;
+  #hardware.enableAllFirmware = true;
+  #hardware.enableRedistributableFirmware = true;
 
   # Disable systemd-boot, as it is replaced by lanzaboote.
   # boot.loader.systemd-boot.enable = true;
@@ -74,7 +79,18 @@
   #  }
   #];
 
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
+ 
   #boot.loader.grub.devices = [ "/dev/disk/by-uuid/7891-8FAA" ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
