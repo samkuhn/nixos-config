@@ -93,10 +93,10 @@
     };
   };
 
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
-  };
+  #hardware.logitech.wireless = {
+  #  enable = true;
+  #  enableGraphical = true;
+  #};
 
   # Workaround: https://github.com/NixOS/nixpkgs/issues/114222
   #systemd.user.services.telephony_client.enable = false;
@@ -107,6 +107,7 @@
     driSupport32Bit = true;
   };
 
+  /*
   # SK Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
 
@@ -153,6 +154,7 @@
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
   };
+  */
 
   networking = {
     hostName = "rogstrixg1660ti";
@@ -166,15 +168,14 @@
       allowPing = true;
     };
 
-    wireless = {
-      enable = true;
-    };
+    wireless.idw.enable = true;
 
     # doesnt work with wireless
-    #networkmanager = {
-    #  enable = true;
-    #  plugins = with pkgs; [ networkmanager-openvpn ];
-    #};
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+      plugins = with pkgs; [ networkmanager-openvpn ];
+    };
   };
 
   fonts = {
