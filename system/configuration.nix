@@ -168,15 +168,14 @@
       allowPing = true;
     };
 
-    wireless.idw.enable = true;
-
-    # doesnt work with wireless
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
       plugins = with pkgs; [ networkmanager-openvpn ];
     };
   };
+
+  networking.wireless.idw.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   fonts = {
     fontDir.enable = true;
