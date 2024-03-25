@@ -107,7 +107,6 @@
     driSupport32Bit = true;
   };
 
-  /*
   # SK Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
 
@@ -154,7 +153,6 @@
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
   };
-  */
 
   networking = {
     hostName = "rogstrixg1660ti";
@@ -274,8 +272,8 @@
     btop
     nvtop
     glmark2
-    inkscape-with-extensions
-    pinta
+    #inkscape-with-extensions
+    #pinta
     lshw
     #direnv
     #vscode
