@@ -28,10 +28,12 @@
   #suites.sway.enable = true;
 
   boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.emergencyAccess = true;
+  #boot.initrd.systemd.emergencyAccess = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   #boot.plymouth.enable = true;
   #boot.consoleLogLevel = 3;
@@ -243,6 +245,7 @@
     wget
     htop
     efibootmgr
+    mhwd
 
     # Networking tools
     inetutils # hostname ping ifconfig...
