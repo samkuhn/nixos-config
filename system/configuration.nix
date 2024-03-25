@@ -245,7 +245,6 @@
     wget
     htop
     efibootmgr
-    mhwd
 
     # Networking tools
     inetutils # hostname ping ifconfig...
