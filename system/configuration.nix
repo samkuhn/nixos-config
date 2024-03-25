@@ -166,6 +166,10 @@
       allowPing = true;
     };
 
+    wireless = {
+      enable = true;
+    };
+
     networkmanager = {
       enable = true;
       plugins = with pkgs; [ networkmanager-openvpn ];
@@ -254,7 +258,7 @@
 
     neovim 
     #lunarvim
-    tmux 
+    #tmux 
     wget
     git
     #nodejs
@@ -392,7 +396,7 @@
 
   #programs.fish.enable = true;
   #programs.bash.enableCompletion = true;
-  #programs.tmux.enable = true;
+  programs.tmux.enable = true;
   #programs.adb.enable = true;
 
   #programs._1password.enable = true;
