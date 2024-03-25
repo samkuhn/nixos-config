@@ -159,6 +159,7 @@
   networking = {
     hostName = "rogstrixg1660ti";
 
+    /*
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -167,15 +168,18 @@
       ];
       allowPing = true;
     };
+    */
+
+    firewall.enable = false;
 
     networkmanager = {
       enable = true;
-      plugins = with pkgs; [ networkmanager-openvpn ];
+      # plugins = with pkgs; [ networkmanager-openvpn ];
     };
   };
 
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  #networking.wireless.iwd.enable = true;
+  #networking.networkmanager.wifi.backend = "iwd";
 
   fonts = {
     fontDir.enable = true;
