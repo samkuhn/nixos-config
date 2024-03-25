@@ -170,10 +170,11 @@
       enable = true;
     };
 
-    networkmanager = {
-      enable = true;
-      plugins = with pkgs; [ networkmanager-openvpn ];
-    };
+    # doesnt work with wireless
+    #networkmanager = {
+    #  enable = true;
+    #  plugins = with pkgs; [ networkmanager-openvpn ];
+    #};
   };
 
   fonts = {
