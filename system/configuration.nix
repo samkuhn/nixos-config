@@ -246,6 +246,8 @@
     htop
     efibootmgr
 
+    pciutils
+
     # Networking tools
     inetutils # hostname ping ifconfig...
     dnsutils # dig nslookup...
@@ -356,10 +358,10 @@
   };
   services.openssh.enable = false;
 
-   services.printing = {
-     enable = true;
-     drivers = with pkgs; [ gutenprint splix cups-bjnp ];
-   };
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ gutenprint splix cups-bjnp ];
+  };
 
   #services.avahi = {
   #  enable = true;

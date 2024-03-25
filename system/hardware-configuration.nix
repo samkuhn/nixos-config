@@ -9,23 +9,21 @@
   ...
 }: {
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "kvm-intel" "i915" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   # boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "thunderbolt" "rtsx_pci_sdmmc" "dm-snapshot" "kvm-intel" "i915" ];
   # boot.initrd.kernelModules = [ "dm-snapshot" ];
-  # boot.kernelModules = [ "kvm-intel" ];
   # https://wiki.archlinux.org/index.php/Kernel_mode_setting#Early_KMS_start
-  # boot.initrd.kernelModules = [ "kvm-intel" "i915" ];
   # Enable framebuffer compression (FBC)
   # can reduce power consumption while reducing memory bandwidth needed for screen refreshes.
   # https://wiki.archlinux.org/index.php/intel_graphics#Framebuffer_compression_(enable_fbc)
   #boot.kernelParams = [ "i915.enable_fbc=1" ];
   #boot.extraModulePackages = [ ];
 
-  #hardware.enableAllFirmware = true;
-  #hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
 
   # Disable systemd-boot, as it is replaced by lanzaboote.
   # boot.loader.systemd-boot.enable = true;
@@ -89,5 +87,5 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = true; #lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
