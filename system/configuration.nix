@@ -159,18 +159,14 @@
   networking = {
     hostName = "rogstrixg1660ti";
 
-    /*
     firewall = {
       enable = true;
       allowedTCPPorts = [
         3000 # Development
         8080 # Development
       ];
-      allowPing = true;
+      allowPing = false;
     };
-    */
-
-    firewall.enable = false;
 
     networkmanager = {
       enable = true;
@@ -238,11 +234,14 @@
   # services.xserver.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
+    vulkan-loader
+    vulkan-tools
     bash
     moreutils # sponge...
     unzip
     vim
     wget
+    tree
     htop
     efibootmgr
 
@@ -290,12 +289,12 @@
           ms-vscode-remote.remote-ssh
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          #{
-          #  name = "Supermaven";
-          #  publisher = "Supermaven";
-          #  version = "0.1.19";
-          #  sha256 = "7e7f5c54f7d15c8b9bc7b2029d0135ba1de2adb0cf273f65c08dadc6b8a0eea0";
-          #}
+          {
+            name = "Supermaven";
+            publisher = "Supermaven";
+            version = "0.1.19";
+            sha256 = "7e7f5c54f7d15c8b9bc7b2029d0135ba1de2adb0cf273f65c08dadc6b8a0eea0";
+          }
           {
             name = "cody-ai";
             publisher = "sourcegraph";
