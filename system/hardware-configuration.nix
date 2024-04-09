@@ -51,11 +51,39 @@
   #boot.supportedFilesystems = [ "xfs" "ext4" "nfs4" "fuse" ];
   #boot.tmpOnTmpfs = true;
 
-  boot.initrd.luks.devices.lo = {
-    device = "/dev/sda3";  
+  # lo config
+  #boot.initrd.luks.devices.lo = {
+  #  device = "/dev/sda3";  
+  #  preLVM = true;
+  #  allowDiscards = true;
+  #  name = "lo";
+  #  #keyFile = "/path/to/your/keyfile"; # Optional
+  #};
+
+  # ld config
+  #boot.initrd.luks.devices.ld = {
+  #  device = "/dev/sda4";  
+  #  preLVM = true;
+  #  allowDiscards = true;
+  #  name = "ld";
+  #  #keyFile = "/path/to/your/keyfile"; # Optional
+  #};
+
+  # do config
+  boot.initrd.luks.devices.do = {
+    device = "/dev/sda5";  
     preLVM = true;
     allowDiscards = true;
-    name = "lo";
+    name = "do";
+    #keyFile = "/path/to/your/keyfile"; # Optional
+  };
+
+  # dd config
+  boot.initrd.luks.devices.dd = {
+    device = "/dev/sda6";  
+    preLVM = true;
+    allowDiscards = true;
+    name = "dd";
     #keyFile = "/path/to/your/keyfile"; # Optional
   };
 
