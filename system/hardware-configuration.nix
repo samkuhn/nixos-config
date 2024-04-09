@@ -59,6 +59,10 @@
   #  name = "lo";
   #  #keyFile = "/path/to/your/keyfile"; # Optional
   #};
+  #fileSystems."/" = {
+  #  device = "/dev/mapper/lo";
+  #  fsType = "ext4";
+  #};
 
   # ld config
   #boot.initrd.luks.devices.ld = {
@@ -87,11 +91,7 @@
     #keyFile = "/path/to/your/keyfile"; # Optional
   };
 
-  fileSystems."/" = {
-    device = "/dev/mapper/lo";
-    fsType = "ext4";
-  };
-
+  # system efi partition. constant
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7891-8FAA";
     fsType = "vfat";
