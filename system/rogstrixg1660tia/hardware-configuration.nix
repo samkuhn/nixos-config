@@ -51,55 +51,24 @@
   #boot.supportedFilesystems = [ "xfs" "ext4" "nfs4" "fuse" ];
   #boot.tmpOnTmpfs = true;
 
-  # lo config
-  #boot.initrd.luks.devices.lo = {
-  #  device = "/dev/sda3";  
-  #  preLVM = true;
-  #  allowDiscards = true;
-  #  name = "lo";
-  #  #keyFile = "/path/to/your/keyfile"; # Optional
-  #};
-  #fileSystems."/" = {
-  #  device = "/dev/mapper/lo";
-  #  fsType = "ext4";
-  #};
-
-  # ld config
-  #boot.initrd.luks.devices.ld = {
-  #  device = "/dev/sda4";  
-  #  preLVM = true;
-  #  allowDiscards = true;
-  #  name = "ld";
-  #  #keyFile = "/path/to/your/keyfile"; # Optional
-  #};
-
-  # do config
-  boot.initrd.luks.devices.do = {
-    device = "/dev/sda5";  
+  boot.initrd.luks.devices.oa = {
+    device = "/dev/sda3";  
     preLVM = true;
     allowDiscards = true;
-    name = "do";
+    name = "oa";
     #keyFile = "/path/to/your/keyfile"; # Optional
   };
   fileSystems."/" = {
-    device = "/dev/mapper/do";
+    device = "/dev/mapper/oa";
     fsType = "ext4";
   };
 
-  # dd config
-  boot.initrd.luks.devices.dd = {
-    device = "/dev/sda6";  
-    preLVM = true;
-    allowDiscards = true;
-    name = "dd";
-    #keyFile = "/path/to/your/keyfile"; # Optional
-  };
-
-  # system efi partition. constant
+  # system efi device. constant
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7891-8FAA";
     fsType = "vfat";
   };
+  boot.loader.efi.efiSysMountPoint = "/boot/efia";
 
   #fileSystems."/boot/efi" = {
   #  device = "/dev/disk/by-uuid/7891-8FAA";

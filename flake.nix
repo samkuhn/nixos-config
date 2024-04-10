@@ -33,7 +33,7 @@
         import ./system/modules
         // {
           overlays = { nixpkgs.overlays = [ self.overlays.default ]; };
-          hardware-configuration = import ./system/hardware-configuration.nix;
+          # hardware-configuration = import ./system/hardware-configuration.nix;
           system-configuration = import ./system/configuration.nix;
           single-user = { suites.single-user.user = username; };
           inherit (lanzaboote.nixosModules) lanzaboote;
@@ -41,16 +41,43 @@
           nix-index-database-home-manager = { home-manager.sharedModules = [ nix-index-database.hmModules.nix-index ]; };
         };
 
-      # System configuration for laptop.
-      nixosConfigurations.rogstrixg1660ti = nixpkgs.lib.nixosSystem {
+      #nixosConfigurations.rogstrixg1660ti = nixpkgs.lib.nixosSystem {
+      #  system = "x86_64-linux";
+      #  specialArgs = {
+      #    inherit inputs;
+      #  };
+      #  modules = builtins.attrValues self.nixosModules;
+      #};
+
+      #nixosConfigurations.rogstrixg1660tia = nixpkgs.lib.nixosSystem {
+      #  system = "x86_64-linux";
+      #  specialArgs = {
+      #    inherit inputs;
+      #  };
+      #  modules = builtins.attrValues self.nixosModules ++ [{ boot.loader.efi.efiSysMountPoint = "/boot/efia"; }];
+      #};
+
+      nixosConfigurations.rogstrixg1660tia = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = builtins.attrValues self.nixosModules;
+        specialArgs = { inherit inputs; };
+        modules = builtins.attrValues self.nixosModules ++ [
+          (import ./system/rogstrixg1660tia/hardware-configuration.nix)
+        ];
       };
 
-      homeConfigurations."${username}@rogstrixg1660ti" = self.nixosConfigurations.rogstrixg1660ti.config.home-manager.users.${username}.home;
+      nixosConfigurations.rogstrixg1660tib = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = builtins.attrValues self.nixosModules ++ [
+          (import ./system/rogstrixg1660tib/hardware-configuration.nix)
+        ];
+      };
+
+      # homeConfigurations."${username}@rogstrixg1660ti" = self.nixosConfigurations.rogstrixg1660ti.config.home-manager.users.${username}.home;
+
+      homeConfigurations."${username}@rogstrixg1660tia" = self.nixosConfigurations.rogstrixg1660tia.config.home-manager.users.${username}.home;
+
+      homeConfigurations."${username}@rogstrixg1660tib" = self.nixosConfigurations.rogstrixg1660tib.config.home-manager.users.${username}.home;
 
       templates = import ./templates;
     }
