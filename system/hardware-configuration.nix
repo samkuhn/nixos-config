@@ -81,6 +81,10 @@
     name = "do";
     #keyFile = "/path/to/your/keyfile"; # Optional
   };
+  fileSystems."/" = {
+    device = "/dev/mapper/do";
+    fsType = "ext4";
+  };
 
   # dd config
   boot.initrd.luks.devices.dd = {
