@@ -51,24 +51,24 @@
   #boot.supportedFilesystems = [ "xfs" "ext4" "nfs4" "fuse" ];
   #boot.tmpOnTmpfs = true;
 
-  boot.initrd.luks.devices.oa = {
-    device = "/dev/sda3";  
-    preLVM = true;
-    allowDiscards = true;
-    name = "oa";
-    #keyFile = "/path/to/your/keyfile"; # Optional
-  };
-  fileSystems."/" = {
-    device = "/dev/mapper/oa";
-    fsType = "ext4";
-  };
+  #boot.initrd.luks.devices.oa = {
+  #  device = "/dev/sda3";  
+  #  preLVM = true;
+  #  allowDiscards = true;
+  #  name = "oa";
+  #  #keyFile = "/path/to/your/keyfile"; # Optional
+  #};
+  #fileSystems."/" = {
+  #  device = "/dev/mapper/oa";
+  #  fsType = "ext4";
+  #};
 
   # system efi device. constant
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7891-8FAA";
     fsType = "vfat";
   };
-  boot.loader.efi.efiSysMountPoint = "/boot/efia";
+  #boot.loader.efi.efiSysMountPoint = "/boot/efia";
 
   #fileSystems."/boot/efi" = {
   #  device = "/dev/disk/by-uuid/7891-8FAA";
