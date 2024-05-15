@@ -298,8 +298,8 @@
           {
             name = "cody-ai";
             publisher = "sourcegraph";
-            version = "1.9.1710429091";
-            sha256 = "eaa298a4d63bd018b049fb0b340053778d1a97c3639b277f179400a9e8bc2574";
+            version = "1.17.1715730510";
+            sha256 = "6c72bf186af1aaf9b1ed5ef513024799f8c4c454419f13eef36bfa36a6644ff5";
           }
           #{
           #  name = "gpt-pilot-vs-code";
