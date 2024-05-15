@@ -234,8 +234,8 @@
   # services.xserver.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vulkan-loader
-    vulkan-tools
+    #vulkan-loader
+    #vulkan-tools
     bash
     moreutils # sponge...
     unzip
