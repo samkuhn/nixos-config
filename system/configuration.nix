@@ -276,7 +276,7 @@
     nvtop
     glmark2
     #inkscape-with-extensions
-    #pinta
+    pinta
     lshw
     #direnv
     #vscode
