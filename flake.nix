@@ -38,7 +38,7 @@
           inherit (lanzaboote.nixosModules) lanzaboote;
           # inherit (nix-index-database.nixosModules) nix-index;
           nix-index-database-home-manager = { home-manager.sharedModules = [ nix-index-database.hmModules.nix-index ]; };
-          cursor = import ./system/modules/cursor.nix;
+          #cursor = import ./system/modules/cursor.nix;
         };
 
       #nixosConfigurations.rogstrixg1660ti = nixpkgs.lib.nixosSystem {
