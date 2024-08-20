@@ -1,6 +1,7 @@
+# Code from https://gist.github.com/lukalot/fcbf3216ad13b8303ab0947af0d5abd5
 {pkgs, ...}: let
   pname = "cursor";
-  version = "0.32.2";
+  version = "0.35.0";
 
   src = pkgs.fetchurl {
     # this will break if the version is updated.
@@ -8,22 +9,31 @@
     # points to a specific version.
     # alternatively, download the appimage manually and
     # include it via src = ./cursor.AppImage, instead of fetchurl
-    url = "https://download.cursor.sh/linux/appImage/x64";
-    hash = "sha256-q2aQWMUp6Ay5kThrH/QSAFozz8IRqzySOcsM9Cy/vKo=";
+    url = "https://downloader.cursor.sh/linux/appImage/x64";
+    hash = "sha256-Fsy9OVP4vryLHNtcPJf0vQvCuu4NEPDTN2rgXO3Znwo=";
   };
   appimageContents = pkgs.appimageTools.extract {inherit pname version src;};
 in
   with pkgs;
     appimageTools.wrapType2 {
       inherit pname version src;
+
       extraInstallCommands = ''
         install -m 444 -D ${appimageContents}/${pname}.desktop -t $out/share/applications
         substituteInPlace $out/share/applications/${pname}.desktop \
-          --replace 'Exec=AppRun' 'Exec=${pname}'
+          --replace-quiet 'Exec=AppRun' 'Exec=${pname}'
         cp -r ${appimageContents}/usr/share/icons $out/share
 
-        # unless linked, the binary is placed in $out/bin/cursor-someVersion
-        ln -s $out/bin/${pname}-${version} $out/bin/${pname}
+        # Ensure the binary exists and create a symlink if it doesn't already exist
+        if [ -e ${appimageContents}/AppRun ]; then
+          install -m 755 -D ${appimageContents}/AppRun $out/bin/${pname}-${version}
+          if [ ! -L $out/bin/${pname} ]; then
+            ln -s $out/bin/${pname}-${version} $out/bin/${pname}
+          fi
+        else
+          echo "Error: Binary not found in extracted AppImage contents."
+          exit 1
+        fi
       '';
 
       extraBwrapArgs = [
