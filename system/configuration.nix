@@ -163,13 +163,14 @@
       enable = true;
       allowedTCPPorts = [
         3000 # Development
+        3333 # Development
         8080 # Development
       ];
       allowPing = false;
     };
 
     networkmanager = {
-      enable = true;
+      enable = false;
       # plugins = with pkgs; [ networkmanager-openvpn ];
     };
   };
