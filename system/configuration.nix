@@ -64,6 +64,14 @@
   # Smartcard daemon for Yubikey
   #services.pcscd.enable = true;
 
+  services.openvpn.servers = {
+    uk = {
+      autoStart = true;
+      # TODO put vpn files somewhere better or move config here.
+      config = "config /home/sam/Downloads/uk-279.protonvpn.udp.ovpn";
+    };
+  };
+
   security.sudo.enable = true;
 
   # On my desktop I don't want to run into file limitations.
@@ -262,6 +270,8 @@
     #polkit_gnome
 
     sbctl
+
+    krdc
 
     neovim 
     #lunarvim
