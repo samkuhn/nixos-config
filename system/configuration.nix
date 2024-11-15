@@ -142,7 +142,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
@@ -232,7 +232,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -269,13 +269,15 @@
 
     #polkit_gnome
 
+    appimage-run
+
     sbctl
 
     krdc
 
-    neovim 
+    neovim
     #lunarvim
-    #tmux 
+    #tmux
     wget
     git
     #nodejs
