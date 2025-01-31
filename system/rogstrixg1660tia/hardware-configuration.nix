@@ -97,5 +97,3 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
-Setting up swapspace version 1, size = 55.9 GiB (60000563200 bytes)
-no label, UUID=
