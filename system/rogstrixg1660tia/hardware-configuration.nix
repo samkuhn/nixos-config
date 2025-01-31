@@ -76,12 +76,11 @@
   #  fsType = "vfat";
   #};
 
-  swapDevices = [ ];
-  #swapDevices = [
-  #  {
-  #    device = "/dev/disk/by-uuid/c183b9d6-3f8c-4f02-87ae-873e428e467f";
-  #  }
-  #];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/05246ac3-7dbc-4a5d-90a3-72e187228570";
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -98,3 +97,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
+Setting up swapspace version 1, size = 55.9 GiB (60000563200 bytes)
+no label, UUID=
