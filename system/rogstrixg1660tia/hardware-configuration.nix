@@ -78,7 +78,7 @@
 
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/05246ac3-7dbc-4a5d-90a3-72e187228570";
+      device = "/dev/sda5";
     }
   ];
 
