@@ -64,13 +64,13 @@
   # Smartcard daemon for Yubikey
   #services.pcscd.enable = true;
 
-  services.openvpn.servers = {
-    uk = {
-      autoStart = true;
+  #services.openvpn.servers = {
+  #  uk = {
+  #    autoStart = true;
       # TODO put vpn files somewhere better or move config here.
-      config = "config /home/sam/Downloads/uk-279.protonvpn.udp.ovpn";
-    };
-  };
+ #     config = "config /home/sam/Downloads/uk-279.protonvpn.udp.ovpn";
+ #   };
+ # };
 
   security.sudo.enable = true;
 
@@ -308,11 +308,16 @@
           #  version = "0.1.19";
           #  sha256 = "7e7f5c54f7d15c8b9bc7b2029d0135ba1de2adb0cf273f65c08dadc6b8a0eea0";
           #}
+          #{
+          #  name = "cody-ai";
+          #  publisher = "sourcegraph";
+          #  version = "1.17.1715730510";
+          #  sha256 = "6c72bf186af1aaf9b1ed5ef513024799f8c4c454419f13eef36bfa36a6644ff5";
+          #}
           {
-            name = "cody-ai";
-            publisher = "sourcegraph";
-            version = "1.17.1715730510";
-            sha256 = "6c72bf186af1aaf9b1ed5ef513024799f8c4c454419f13eef36bfa36a6644ff5";
+            name = "github-copilot-chat";
+            publisher = "GitHub";
+            version = "0.25.2025021101";
           }
           #{
           #  name = "gpt-pilot-vs-code";
