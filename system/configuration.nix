@@ -315,7 +315,7 @@
           #  sha256 = "6c72bf186af1aaf9b1ed5ef513024799f8c4c454419f13eef36bfa36a6644ff5";
           #}
           {
-            name = "GitHub.copilot-chat";
+            name = "copilot-chat";
             publisher = "GitHub";
             version = "0.25.2025021101";
 	    sha256 = "dae8fa7262283233023ec3778802ff33eac8a5e079ff7816cef93f8be8d423cb";
