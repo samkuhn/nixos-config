@@ -468,7 +468,7 @@
       #sandbox = true;
       #extra-sandbox-paths = [ "/etc/nix/netrc" ];
       trusted-users = [ "root" "${config.suites.single-user.user}" ];
-      substituters = [ "https://cachix.cachix.org", "https://cache.nixos.org" ];
+      substituters = [ "https://cachix.cachix.org" "https://cache.nixos.org" ];
       extra-experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
       #netrc-file = "/etc/nix/netrc";
       #auto-optimise-store = true;
