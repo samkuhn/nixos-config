@@ -282,7 +282,7 @@
     git
     #nodejs
     #yarn
-    google-chrome
+    #google-chrome
     python3
     htop
     btop
