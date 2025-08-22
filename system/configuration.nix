@@ -26,6 +26,8 @@
 
   suites.single-user.enable = true;
   #suites.sway.enable = true;
+  # Enable shared Wayland environment tweaks
+  suites.wayland.enable = true;
 
   boot.initrd.systemd.enable = true;
   #boot.initrd.systemd.emergencyAccess = true;
@@ -117,8 +119,8 @@
     driSupport32Bit = true;
   };
 
-  # SK Load nvidia driver for Xorg and Wayland
-  #services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
+  # NVIDIA driver for Xorg/Wayland sessions (Hyprland)
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # SK nvidia driver
   #hardware.nvidia = {
@@ -152,17 +154,27 @@
   #  package = config.boot.kernelPackages.nvidiaPackages.stable;
   #};
 
-  # SK nvidia prime
-#  hardware.nvidia.prime = {
-#    offload = {
-#      enable = true;
-#      enableOffloadCmd = true;
-#    };
-#    #sync.enable = true;
-#    # Make sure to use the correct Bus ID values for your system!
-#    intelBusId = "PCI:0:2:0";
-#    nvidiaBusId = "PCI:1:0:0";
-#  };
+  # NVIDIA PRIME offload: use Intel as primary, offload heavy apps to NVIDIA
+  hardware.nvidia = {
+    modesetting.enable = true;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      # Verify these Bus IDs per host with `lspci | grep -E 'VGA|3D'`
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
+
+  # Wayland environment helpers
+  # NOTE: On hybrid (Intel+iGPU primary, NVIDIA offload) systems, forcing
+  # GBM/GLX to NVIDIA globally breaks Wayland/XWayland on the Intel GPU.
+  # Keep only compositor-safe defaults here; use per-app offload env when needed.
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   networking = {
     hostName = "rogstrixg1660ti";
@@ -190,6 +202,16 @@
     fontDir.enable = true;
     fontconfig = {
       enable = true;
+      # Improve text rendering (Chromium/Brave/Electron clarity)
+      antialias = true;
+      hinting = {
+        enable = true;
+        style = "slight";
+      };
+      subpixel = {
+        rgba = "rgb";      # adjust to your panel (rgb/bgr/vrgb/vbgr/none)
+        lcdfilter = "default"; # default|light|legacy
+      };
       defaultFonts = {
         monospace = [
           "SauceCodePro Nerd Font"
@@ -209,14 +231,17 @@
 
   #services.xserver.displayManager.autoLogin.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
+  # Display Manager + Session
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # Switch from KDE Plasma to Hyprland
+  services.xserver.desktopManager.plasma5.enable = false;
+  programs.hyprland.enable = true;
+  services.xserver.displayManager.defaultSession = "hyprland";
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "gb";
-    xkbVariant = "";
+    xkb.layout = "gb";
+    xkb.variant = "";
   };
 
   # Configure console keymap
@@ -291,6 +316,8 @@
     #inkscape-with-extensions
     pinta
     lshw
+    brightnessctl
+    playerctl
     #direnv
     #vscode
     (vscode-with-extensions.override {
@@ -329,6 +356,16 @@
         ];
     })
   ];
+
+  # Portals for Hyprland
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = [ "hyprland" "gtk" ];
+  };
 
   # Use experimental nsncd. See https://flokli.de/posts/2022-11-18-nsncd/
   #services.nscd.enableNsncd = true;
