@@ -34,6 +34,19 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
+        # Input configuration: UK layout and sane key repeat
+        input = {
+          kb_layout = "gb";     # UK keyboard layout
+          repeat_delay = 500;    # ms before repeat starts
+          repeat_rate = 33;      # repeats per second
+        };
+
+        # Make XWayland apps crisp on scaled monitors
+        # If you use fractional/HiDPI scaling, this avoids blurry upscaling.
+        xwayland = {
+          force_zero_scaling = true;
+        };
+
         # Basic mod key and a few sensible keybinds
         # Use SUPER+Q to open a terminal
         "$mod" = "SUPER";
@@ -47,7 +60,29 @@ in
           "$mod, V, togglefloating"
           "$mod, F, fullscreen, 1"
           "$mod, M, exit"
-          
+
+          # Workspaces (per-monitor). 1..10 to switch; Shift+number to move window
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
+          "$mod, 5, workspace, 5"
+          "$mod, 6, workspace, 6"
+          "$mod, 7, workspace, 7"
+          "$mod, 8, workspace, 8"
+          "$mod, 9, workspace, 9"
+          "$mod, 0, workspace, 10"
+          "$mod SHIFT, 1, movetoworkspace, 1"
+          "$mod SHIFT, 2, movetoworkspace, 2"
+          "$mod SHIFT, 3, movetoworkspace, 3"
+          "$mod SHIFT, 4, movetoworkspace, 4"
+          "$mod SHIFT, 5, movetoworkspace, 5"
+          "$mod SHIFT, 6, movetoworkspace, 6"
+          "$mod SHIFT, 7, movetoworkspace, 7"
+          "$mod SHIFT, 8, movetoworkspace, 8"
+          "$mod SHIFT, 9, movetoworkspace, 9"
+          "$mod SHIFT, 0, movetoworkspace, 10"
+
           # Media keys: volume via PipeWire (wpctl)
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
