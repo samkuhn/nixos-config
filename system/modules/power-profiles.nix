@@ -101,9 +101,11 @@ let
 
     show_status() {
       echo "CPU governor(s):"
-      if compgen -G "/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" > /dev/null; then
-        for gfile in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
-          cpu=$(basename "$(dirname "$gfile")")
+      local gfiles=(/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor)
+      if [[ -e "''${gfiles[0]:-}" ]]; then
+        for gfile in "''${gfiles[@]}"; do
+          # parent of cpufreq dir is e.g. cpu0
+          cpu=$(basename "$(dirname "$(dirname "$gfile")")")
           gov=$(cat "$gfile" 2>/dev/null || echo "?")
           echo "  $cpu: $gov"
         done
@@ -120,8 +122,22 @@ let
       fi
 
       if command -v nvidia-smi >/dev/null 2>&1; then
-        echo "NVIDIA:"
-        nvidia-smi -q -d POWER | sed -n '/Power Readings:/,$p' | sed -n '1,12p' || true
+        # Try concise CSV first
+        local line
+        line=$(nvidia-smi --query-gpu=name,power.draw,power.limit --format=csv,noheader,nounits 2>/dev/null | head -n1 || true)
+        if [[ -n "$line" ]]; then
+          # name,draw,limit
+          local name draw limit
+          IFS="," read -r name draw limit <<<"$line"
+          # trim spaces
+          name="${name## }"; name="${name%% }"
+          draw="${draw## }"; draw="${draw%% }"
+          limit="${limit## }"; limit="${limit%% }"
+          echo "NVIDIA: $name, ${draw}W / ${limit}W"
+        else
+          echo "NVIDIA:"
+          nvidia-smi -q -d POWER | sed -n '/Power Readings:/,$p' | sed -n '1,12p' || true
+        fi
       fi
     }
 
@@ -167,7 +183,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ powerProfileScript pkgs.cpupower ];
+    environment.systemPackages = [ powerProfileScript ];
 
     systemd.services."power-profile-apply" = {
       description = "Apply default power profile";
