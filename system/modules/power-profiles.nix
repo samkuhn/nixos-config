@@ -6,7 +6,7 @@ let
     #!/usr/bin/env bash
     set -euo pipefail
 
-    PROFILE="${1:-}"
+    PROFILE="''${1:-}"
 
     usage() {
       echo "Usage: power-profile set <quiet|balanced|performance> | status | apply-default" >&2
@@ -189,4 +189,3 @@ in
     };
   };
 }
-
