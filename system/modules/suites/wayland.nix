@@ -44,8 +44,9 @@ with lib;
             wlr-randr
           ];
 
-          # Source: https://discourse.nixos.org/t/atril-is-blurry-engrampa-is-not-sway-scale-2/2865/2
-          xresources.properties."Xft.dpi" = "96";
+          # Match XWayland DPI to Hyprland scale (1.5 -> 144 DPI)
+          # Adjust if you change monitor scale.
+          xresources.properties."Xft.dpi" = "144";
         }
       ];
     };

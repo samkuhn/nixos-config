@@ -34,6 +34,26 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
+        # Persist monitor scaling (both at 1.5x)
+        monitor = [
+          "eDP-1,preferred,auto,1.5"
+          "HDMI-A-1,preferred,auto,1.5"
+        ];
+        # Pin workspaces to specific monitors (canonical Hyprland approach)
+        #  - default:true ensures a workspace number belongs to that monitor
+        #  - persistent:true keeps it around (and returns to its monitor when reattached)
+        workspace = [
+          "1,monitor:eDP-1,default:true,persistent:true"
+          "2,monitor:eDP-1,default:true,persistent:true"
+          "3,monitor:eDP-1,default:true,persistent:true"
+          "4,monitor:eDP-1,default:true,persistent:true"
+          "5,monitor:eDP-1,default:true,persistent:true"
+          "6,monitor:HDMI-A-1,default:true,persistent:true"
+          "7,monitor:HDMI-A-1,default:true,persistent:true"
+          "8,monitor:HDMI-A-1,default:true,persistent:true"
+          "9,monitor:HDMI-A-1,default:true,persistent:true"
+          "10,monitor:HDMI-A-1,default:true,persistent:true"
+        ];
         # Input configuration: UK layout and sane key repeat
         input = {
           kb_layout = "gb";     # UK keyboard layout
@@ -51,6 +71,11 @@ in
         # Use SUPER+Q to open a terminal
         "$mod" = "SUPER";
         "$terminal" = "footclient";
+
+        # Ensure a solid black background (no wallpaper)
+        exec-once = [
+          "swaybg --color 000000"
+        ];
 
         # Keybindings
         bind = [
@@ -108,9 +133,14 @@ in
     programs.foot = {
       enable = true;
       server.enable = true;
-      settings.main.font = "monospace:size=12";
+      settings = {
+        main.font = "monospace:size=12";
+        # Drastically increase terminal scrollback buffer
+        scrollback.lines = 100000;
+      };
     };
     home.packages = with pkgs; [
+      swaybg
       nodejs_20
       #coin
       #nixfmt
@@ -530,6 +560,9 @@ in
     programs.nix-index.enable = true;
     home.sessionVariables = {
       BROWSER = "chromium";
+      # Increase shell history sizes (for bash/zsh)
+      HISTSIZE = "500000";
+      HISTFILESIZE = "1000000";
     };
     programs.direnv = {
       enable = true;
