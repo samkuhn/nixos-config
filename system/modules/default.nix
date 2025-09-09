@@ -7,5 +7,5 @@
   home-manager = import ./home-manager.nix;
   # hp-zbook-studio-g5 = import ./hp-zbook-studio-g5.nix;
   nvidia-vulkan = import ./nvidia-vulkan.nix;
-  # power-profiles = import ./power-profiles.nix;
+  power-profiles = import ./power-profiles.nix;
 }
