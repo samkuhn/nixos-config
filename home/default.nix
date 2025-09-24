@@ -109,8 +109,9 @@ in
           "$mod SHIFT, 0, movetoworkspace, 10"
 
           # Media keys: volume via PipeWire (wpctl)
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          # Unmute first so volume up/down always has audible effect
+          ", XF86AudioRaiseVolume, exec, sh -c 'wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+'"
+          ", XF86AudioLowerVolume, exec, sh -c 'wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-'"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
           # Media keys: playback via playerctl
@@ -141,7 +142,7 @@ in
     };
     home.packages = with pkgs; [
       swaybg
-      nodejs_20
+      nodejs_21
       #coin
       #nixfmt
       #bitwarden

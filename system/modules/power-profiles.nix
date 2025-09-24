@@ -34,9 +34,28 @@ let
           gov="performance"; turbo="on" ;;
       esac
 
+      # Determine available governors and pick a valid one with fallback
+      local avail_file="/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors"
+      local avail=""
+      [[ -r "$avail_file" ]] && avail="$(cat "$avail_file" 2>/dev/null)"
+      choose_gov() {
+        local desired="$1"
+        case " $avail " in
+          *" $desired "*) echo "$desired";;
+          *" schedutil "*) echo schedutil;;
+          *" ondemand "*) echo ondemand;;
+          *" conservative "*) echo conservative;;
+          *" powersave "*) echo powersave;;
+          *" performance "*) echo performance;;
+          *) echo "$desired";;
+        esac
+      }
+      local chosen_gov
+      chosen_gov="$(choose_gov "$gov")"
+
       # Set governor for all CPUs
       for gfile in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
-        [[ -w "$gfile" ]] && echo "$gov" >"$gfile" || true
+        [[ -w "$gfile" ]] && echo "$chosen_gov" >"$gfile" || true
       done
 
       # Toggle turbo for Intel (intel_pstate)
@@ -130,10 +149,10 @@ let
           local name draw limit
           IFS="," read -r name draw limit <<<"$line"
           # trim spaces
-          name="${name## }"; name="${name%% }"
-          draw="${draw## }"; draw="${draw%% }"
-          limit="${limit## }"; limit="${limit%% }"
-          echo "NVIDIA: $name, ${draw}W / ${limit}W"
+          name="''${name## }"; name="''${name%% }"
+          draw="''${draw## }"; draw="''${draw%% }"
+          limit="''${limit## }"; limit="''${limit%% }"
+          echo "NVIDIA: $name, ''${draw}W / ''${limit}W"
         else
           echo "NVIDIA:"
           nvidia-smi -q -d POWER | sed -n '/Power Readings:/,$p' | sed -n '1,12p' || true

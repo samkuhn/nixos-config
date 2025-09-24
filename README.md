@@ -38,15 +38,15 @@ My system and home configurations are based on nixos-unstable. For development I
 
 I have development shells for the following languages available with various versions:
 
-- [Java](shells/java.nix)
-- [Node](shells/node.nix)
-- [ruby](shells/ruby.nix)
+- [Java](dev-shells/java.nix)
+- [Node](dev-shells/node.nix)
+- [ruby](dev-shells/ruby.nix)
 
 You can enter a shell using for example:
 
 ```sh
 nix develop github:bobvanderlinden/nixos-config#java-8
-nix develop github:bobvanderlinden/nixos-config#node-16
+nix develop github:bobvanderlinden/nixos-config#node-21
 nix develop github:bobvanderlinden/nixos-config#ruby-3_1
 ```
 
