@@ -42,6 +42,7 @@ with lib; {
           "input"
           "sudo"
           "plugdev"
+          "adbusers"
         ];
         useDefaultShell = true;
       };

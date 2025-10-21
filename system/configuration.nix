@@ -247,6 +247,9 @@
     xkb.variant = "";
   };
 
+  services.gvfs.enable = true;
+  services.udev.packages = with pkgs; [ android-udev-rules ];
+
   # Configure console keymap
   console.keyMap = "uk";
 
@@ -297,6 +300,8 @@
 
     #polkit_gnome
 
+    glib.bin # provides gio/gdbus tooling for GVFS mounts
+    simple-mtpfs # reliable CLI-based MTP mount helper
     appimage-run
 
     sbctl
@@ -462,7 +467,7 @@
   #programs.fish.enable = true;
   #programs.bash.enableCompletion = true;
   programs.tmux.enable = true;
-  #programs.adb.enable = true;
+  programs.adb.enable = true;
 
   #programs._1password.enable = true;
   #programs._1password-gui = {
