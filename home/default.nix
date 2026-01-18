@@ -48,17 +48,18 @@ in
           "3,monitor:eDP-1,default:true,persistent:true"
           "4,monitor:eDP-1,default:true,persistent:true"
           "5,monitor:eDP-1,default:true,persistent:true"
-          "6,monitor:HDMI-A-1,default:true,persistent:true"
+          "6,monitor:eDP-1,default:true,persistent:true"
           "7,monitor:HDMI-A-1,default:true,persistent:true"
           "8,monitor:HDMI-A-1,default:true,persistent:true"
           "9,monitor:HDMI-A-1,default:true,persistent:true"
           "10,monitor:HDMI-A-1,default:true,persistent:true"
+          "11,monitor:HDMI-A-1,default:true,persistent:true"
         ];
         # Input configuration: UK layout and sane key repeat
         input = {
           kb_layout = "gb";     # UK keyboard layout
-          repeat_delay = 500;    # ms before repeat starts
-          repeat_rate = 33;      # repeats per second
+          repeat_delay = 750;    # ms before repeat starts
+          repeat_rate = 25;      # repeats per second
         };
 
         # Make XWayland apps crisp on scaled monitors
@@ -86,27 +87,29 @@ in
           "$mod, F, fullscreen, 1"
           "$mod, M, exit"
 
-          # Workspaces (per-monitor). 1..10 to switch; Shift+number to move window
-          "$mod, 1, workspace, 1"
-          "$mod, 2, workspace, 2"
-          "$mod, 3, workspace, 3"
-          "$mod, 4, workspace, 4"
-          "$mod, 5, workspace, 5"
-          "$mod, 6, workspace, 6"
-          "$mod, 7, workspace, 7"
-          "$mod, 8, workspace, 8"
-          "$mod, 9, workspace, 9"
-          "$mod, 0, workspace, 10"
-          "$mod SHIFT, 1, movetoworkspace, 1"
-          "$mod SHIFT, 2, movetoworkspace, 2"
-          "$mod SHIFT, 3, movetoworkspace, 3"
-          "$mod SHIFT, 4, movetoworkspace, 4"
-          "$mod SHIFT, 5, movetoworkspace, 5"
-          "$mod SHIFT, 6, movetoworkspace, 6"
-          "$mod SHIFT, 7, movetoworkspace, 7"
-          "$mod SHIFT, 8, movetoworkspace, 8"
-          "$mod SHIFT, 9, movetoworkspace, 9"
-          "$mod SHIFT, 0, movetoworkspace, 10"
+          # Workspaces (per-monitor). Grave..0 to switch; Shift+key moves window
+          "$mod, grave, workspace, 1"
+          "$mod, 1, workspace, 2"
+          "$mod, 2, workspace, 3"
+          "$mod, 3, workspace, 4"
+          "$mod, 4, workspace, 5"
+          "$mod, 5, workspace, 6"
+          "$mod, 6, workspace, 7"
+          "$mod, 7, workspace, 8"
+          "$mod, 8, workspace, 9"
+          "$mod, 9, workspace, 10"
+          "$mod, 0, workspace, 11"
+          "$mod SHIFT, grave, movetoworkspace, 1"
+          "$mod SHIFT, 1, movetoworkspace, 2"
+          "$mod SHIFT, 2, movetoworkspace, 3"
+          "$mod SHIFT, 3, movetoworkspace, 4"
+          "$mod SHIFT, 4, movetoworkspace, 5"
+          "$mod SHIFT, 5, movetoworkspace, 6"
+          "$mod SHIFT, 6, movetoworkspace, 7"
+          "$mod SHIFT, 7, movetoworkspace, 8"
+          "$mod SHIFT, 8, movetoworkspace, 9"
+          "$mod SHIFT, 9, movetoworkspace, 10"
+          "$mod SHIFT, 0, movetoworkspace, 11"
 
           # Media keys: volume via PipeWire (wpctl)
           # Unmute first so volume up/down always has audible effect
